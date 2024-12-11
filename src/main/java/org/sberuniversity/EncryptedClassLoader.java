@@ -19,7 +19,7 @@ public class EncryptedClassLoader extends ClassLoader {
         // Преобразуем имя класса в путь
         File file = new File(dir, name.replace('.', File.separatorChar) + ".class");
         if (!file.exists()) {
-            throw new ClassNotFoundException("Class file not found: " + file.getAbsolutePath());
+            throw new ClassNotFoundException("Класс не обнаружен: " + file.getAbsolutePath());
         }
 
         try {
@@ -30,7 +30,7 @@ public class EncryptedClassLoader extends ClassLoader {
             // Определяем класс
             return defineClass(name, decryptedBytes, 0, decryptedBytes.length);
         } catch (IOException e) {
-            throw new ClassNotFoundException("Error loading class", e);
+            throw new ClassNotFoundException("Ошибка при загрузке класса", e);
         }
     }
 
